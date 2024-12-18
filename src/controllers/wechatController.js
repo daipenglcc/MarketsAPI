@@ -2,8 +2,8 @@ const wechatService = require('../services/wechatService')
 
 async function fetchToken(ctx) {
 	try {
-		// Call the WeChat Cloud function to get the Access Token
-		const token = await wechatService.callWeChatCloud()
+		// Get the WeChat Access Token using the cloud function
+		const token = await wechatService.getWeChatToken()
 
 		// Return the token to the client
 		ctx.body = { success: true, token }
