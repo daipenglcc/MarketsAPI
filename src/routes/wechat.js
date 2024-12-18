@@ -4,8 +4,6 @@ const wechatController = require('../controllers/wechatController')
 const router = new Router()
 
 router.get('/fetchToken', wechatController.fetchToken)
-router.post('/openid', wechatController.fetchOpenId)
-router.post('/send-reminder', wechatController.sendDailyReminder)
-router.post('/add-draft', wechatController.addDraft)
+router.post('/addDraft', wechatController.addDraft)
 
 module.exports = router
