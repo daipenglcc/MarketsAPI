@@ -10,7 +10,7 @@ const axios = require('axios')
 
 async function getWeChatToken() {
 	try {
-		const response = await callCloudFunction('/api/getAccessToken', 'GET', {
+		const response = await callCloudFunction('https://api.weixin.qq.com/cgi-bin/token', 'GET', {
 			grant_type: 'client_credential'
 		})
 		return response.token // 假设云函数返回的 token 在 response.token
