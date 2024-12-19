@@ -56,9 +56,9 @@ async function addDraft(ctx) {
 	const daysUntilWeekend = 6 - now.day() // 距离周末的天数
 	const daysUntilMayDay = calculateDaysUntil(now, 5, 1) // 距离五一的天数
 	const daysUntilNationalDay = calculateDaysUntil(now, 10, 1) // 距离国庆的天数
-	const daysUntilNewYear = calculateDaysUntil(now, 1, 1) // 距离元旦的天数
+	const daysUntilNewYear = calculateDaysUntil(now, 12, 31) // 距离元旦的天数
 	const daysUntilLittleNewYear = calculateLunarDaysUntil(now, 12, 23) // 距离小年的天数
-	const daysUntilSpringFestival = calculateLunarDaysUntil(now, 1, 1) // 距离春节的天数
+	const daysUntilSpringFestival = calculateLunarDaysUntil(now, 12, 29) // 距离春节的天数
 	const daysUntilDragonBoat = calculateLunarDaysUntil(now, 5, 5) // 距离端午的天数
 	const daysUntilMidAutumn = calculateLunarDaysUntil(now, 8, 15) // 距离中秋的天数
 
@@ -82,7 +82,7 @@ async function addDraft(ctx) {
 	content = content.replace('?中秋?', daysUntilMidAutumn) // 替换为距离中秋的天数
 	content = content.replace('?端午?', daysUntilDragonBoat) // 替换为距离端午的天数
 	content = content.replace('?国庆?', daysUntilNationalDay) // 替换为距离国庆的天数
-	content = content.replace('?元旦?', daysUntilNewYear) // 替换为距���元旦的天数
+	content = content.replace('?元旦?', daysUntilNewYear) // 替换为距离元旦的天数
 	content = content.replace('?小年?', daysUntilLittleNewYear) // 替换为距离小年的天数
 	content = content.replace('?春节?', daysUntilSpringFestival) // 替换为距离春节的天数
 
@@ -111,9 +111,9 @@ function calculateDaysUntil(now, month, day) {
 	// 如果节日已经过去，计算到下一年的天数
 	if (holidayDayjs.isBefore(now)) {
 		return `已经过去${now.diff(holidayDayjs, 'day')}天`
+	} else {
+		return `还有${holidayDayjs.diff(now, 'day')}天`
 	}
-
-	return `还有${holidayDayjs.diff(now, 'day')}天`
 }
 
 // 计算距离农历节日的天数
@@ -127,10 +127,14 @@ function calculateLunarDaysUntil(now, lunarMonth, lunarDay) {
 
 	// 如果节日已经过去，计算到下一年的天数
 	if (holidayDayjs.isBefore(now)) {
+		// holidayDate = chineseLunar.lunarToSolar(currentYear + 1, lunarMonth, lunarDay)
+		// holidayDayjs = dayjs(holidayDate)
 		return `已经过去${now.diff(holidayDayjs, 'day')}天`
+	} else {
+		return `还有${holidayDayjs.diff(now, 'day')}天`
 	}
 
-	return `还有${holidayDayjs.diff(now, 'day')}天`
+	// return `还有${holidayDayjs.diff(now, 'day')}天`
 }
 
 async function fetchDraftList(ctx) {
