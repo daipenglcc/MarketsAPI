@@ -53,15 +53,32 @@ async function addDraft(ctx) {
 	}
 
 	// 计算距离特定日期的天数
-	const daysUntil = (date) => dayjs(date).diff(now, 'day')
+	function calculateDaysUntil(now, month, day) {
+		const currentYear = now.year()
+		let holidayDayjs = dayjs(`${currentYear}-${month}-${day}`)
+
+		// 如果节日已经过去，计算到下一年的天数
+		if (holidayDayjs.isBefore(now)) {
+			holidayDayjs = dayjs(`${currentYear + 1}-${month}-${day}`)
+			return `已经过去${now.diff(holidayDayjs, 'day') * -1}天`
+		}
+
+		return `还有${holidayDayjs.diff(now, 'day')}天`
+	}
+
 	const daysUntilWeekend = 6 - now.day() // 距离周末的天数
-	const daysUntilMayDay = daysUntil(`${now.year()}-05-01`) // 距离五一的天数
-	const daysUntilNationalDay = daysUntil(`${now.year()}-10-01`) // 距离国庆的天数
-	const daysUntilNewYear = daysUntil(`${now.year() + 1}-01-01`) // 距离元旦的天数
+	const daysUntilMayDay = calculateDaysUntil(now, 5, 1) // 距离五一的天数
+	const daysUntilNationalDay = calculateDaysUntil(now, 10, 1) // 距离国庆的天数
+	const daysUntilNewYear = calculateDaysUntil(now, 1, 1) // 距离元旦的天数
 	const daysUntilLittleNewYear = calculateLunarDaysUntil(now, 12, 23) // 距离小年的天数
 	const daysUntilSpringFestival = calculateLunarDaysUntil(now, 1, 1) // 距离春节的天数
 	const daysUntilDragonBoat = calculateLunarDaysUntil(now, 5, 5) // 距离端午的天数
 	const daysUntilMidAutumn = calculateLunarDaysUntil(now, 8, 15) // 距离中秋的天数
+
+	console.log('Days Until Little New Year:', daysUntilLittleNewYear)
+	console.log('Days Until Spring Festival:', daysUntilSpringFestival)
+	console.log('Days Until Dragon Boat:', daysUntilDragonBoat)
+	console.log('Days Until Mid Autumn:', daysUntilMidAutumn)
 
 	// 用动态值替换内容中的占位符
 	content = content.replace('{{currentDate}}', currentDate) // 替换为当前日期
@@ -102,18 +119,16 @@ async function addDraft(ctx) {
 // 计算距离农历节日的天数
 function calculateLunarDaysUntil(now, lunarMonth, lunarDay) {
 	const currentYear = now.year()
-	console.log('X1')
-
 	let holidayDate = chineseLunar.lunarToSolar(currentYear, lunarMonth, lunarDay)
-	// console.log(holidayDate)
-	console.log('X2')
+	console.log(`Lunar to Solar for ${lunarMonth}/${lunarDay}:`, holidayDate) // Log conversion result
 
-	let holidayDayjs = dayjs(`${holidayDate.year}-${holidayDate.month}-${holidayDate.day}`)
+	// Parse the date string correctly
+	let holidayDayjs = dayjs(holidayDate)
 
 	// 如果节日已经过去，计算到下一年的天数
 	if (holidayDayjs.isBefore(now)) {
 		holidayDate = chineseLunar.lunarToSolar(currentYear + 1, lunarMonth, lunarDay)
-		holidayDayjs = dayjs(`${holidayDate.year}-${holidayDate.month}-${holidayDate.day}`)
+		holidayDayjs = dayjs(holidayDate)
 		return `已经过去${now.diff(holidayDayjs, 'day') * -1}天`
 	}
 
