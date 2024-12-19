@@ -52,8 +52,45 @@ async function addDraft(articles) {
 	}
 }
 
+async function fetchDraftList() {
+	try {
+		const token = await getWeChatToken()
+		const response = await axios.post(
+			`https://api.weixin.qq.com/cgi-bin/draft/batchget?access_token=${token}`,
+			{
+				offset: 0,
+				count: 20,
+				no_content: 1
+			}
+		)
+		return response.data
+	} catch (error) {
+		console.error('Error adding draft:', error)
+		throw new Error('Failed to add draft')
+	}
+}
+
+async function fetchDraft(data) {
+	console.log('XXXXXX', data)
+	try {
+		const token = await getWeChatToken()
+		const response = await axios.post(
+			`https://api.weixin.qq.com/cgi-bin/draft/get?access_token=${token}`,
+			{
+				media_id: data.media_id
+			}
+		)
+		return response.data
+	} catch (error) {
+		console.error('Error adding draft:', error)
+		throw new Error('Failed to add draft')
+	}
+}
+
 module.exports = {
 	getWeChatToken,
 	getWeChatMediaList,
-	addDraft
+	addDraft,
+	fetchDraftList,
+	fetchDraft
 }

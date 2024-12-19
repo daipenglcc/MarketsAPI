@@ -27,7 +27,7 @@ async function addDraft(ctx) {
 	try {
 		const result = await wechatService.addDraft([
 			{
-				title: '集集有你周四提醒！',
+				title: '济南大集，周四提醒！',
 				author: '集集有你小助手',
 				digest: '希望是灵魂的心跳 Hope is the heartbeat of the soul',
 				content,
@@ -41,8 +41,33 @@ async function addDraft(ctx) {
 	}
 }
 
+async function fetchDraftList(ctx) {
+	try {
+		const result = await wechatService.fetchDraftList()
+		ctx.body = { success: true, result }
+	} catch (error) {
+		ctx.status = 500
+		ctx.body = { success: false, message: error.message }
+	}
+}
+
+async function fetchDraft(ctx) {
+	const { media_id } = ctx.request.query
+	try {
+		const result = await wechatService.fetchDraft({
+			media_id: media_id
+		})
+		ctx.body = { success: true, result }
+	} catch (error) {
+		ctx.status = 500
+		ctx.body = { success: false, message: error.message }
+	}
+}
+
 module.exports = {
 	fetchToken,
 	fetchMediaList,
-	addDraft
+	addDraft,
+	fetchDraftList,
+	fetchDraft
 }
