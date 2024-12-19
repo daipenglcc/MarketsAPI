@@ -17,6 +17,25 @@ async function getWeChatToken() {
 	}
 }
 
+async function getWeChatMediaList() {
+	try {
+		const token = await getWeChatToken()
+		const response = await axios.post(
+			`https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=${token}`,
+			{
+				type: 'image',
+				offset: 0,
+				count: 20
+			}
+		)
+
+		return response.data
+	} catch (error) {
+		console.error('Error fetching OpenID:', error)
+		throw new Error('Failed to fetch OpenID')
+	}
+}
+
 async function addDraft(articles) {
 	try {
 		const token = await getWeChatToken()
@@ -35,5 +54,6 @@ async function addDraft(articles) {
 
 module.exports = {
 	getWeChatToken,
+	getWeChatMediaList,
 	addDraft
 }
