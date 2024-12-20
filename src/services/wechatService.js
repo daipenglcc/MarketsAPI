@@ -2,6 +2,7 @@ const axios = require('axios')
 
 async function getWeChatToken() {
 	try {
+		console.log('WX_APPID', process.env.WX_APPID)
 		const response = await axios.get('https://api.weixin.qq.com/cgi-bin/token', {
 			params: {
 				grant_type: 'client_credential',

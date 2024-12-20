@@ -7,8 +7,9 @@ FROM node:lts-alpine
 # 设置容器内的当前目录
 WORKDIR /app
 
-# 用户设置的环境变量
-ENV ENV=DEV
+# 使用 ARG 来接收构建时的参数
+ARG NODE_ENV
+ENV NODE_ENV=$NODE_ENV
 
 # 使用速度更快的国内镜像源
 RUN npm config set registry https://registry.npmmirror.com

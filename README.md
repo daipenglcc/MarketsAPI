@@ -1,31 +1,32 @@
 # 集集有你 - API 服务
 
-### 项目信息
+## 项目信息
 
 该项目是一个 Node.js 应用程序，集成了微信的 API，提供了诸如获取令牌、检索媒体列表和草稿管理等服务。
 
-### 应用信息
+## 微信信息
+
+### 1. 应用信息
 - **AppSecret:** 37de2579db05998dcc58a42b88f33b4b  
 - **AppID:** wx5cc63b63f4486af0  
 
-### CLI 配置信息
+### 2. CLI 配置信息
 - **名称:** daipeng  
 - **密钥:** AAQ9G7sEAAABAAAAAABrC2mz0ZAIPyrOup5iZyAAAAAraAdzKm8i8JwFJ68cDOJBtIHsmv3F8e00LCv7f+tYvv9NY49fQrpCITG1+CDGc6ngZEP+P1WdeTFvkyVGj7JbaGK0qB0xSg3LESm91mw8zBZHpHjpHQR9WaoO1jAwIJxFsnORaFrMYeqalkuc2lVxBQgNjgTk7K/W
 
-### 登录
-使用以下命令登录微信云托管：  
-```bash
-wxcloud login
-```
+### 3. 微信公众号封面图尺寸
 
-### 部署
-使用以下命令部署微信云托管：  
-```bash
-wxcloud deploy
-```
-
-### 封面图尺寸
 900 × 383
+
+## 微信云托管
+
+```bash
+# 登录
+wxcloud login
+
+# 部署
+wxcloud deploy  
+```
 
 ## 项目结构
 
@@ -40,8 +41,8 @@ wxcloud deploy
 1. **克隆仓库：**
 
    ```bash
-   git clone https://github.com/yourusername/wechat-cloud-service.git
-   cd wechat-cloud-service
+   git clone git@github.com:daipenglcc/MarketsAPI.git
+   cd MarketsAPI
    ```
 
 2. **安装依赖：**
@@ -50,29 +51,46 @@ wxcloud deploy
    npm install
    ```
 
-3. **设置环境变量：**
-
-   在根目录下创建一个 `.env` 文件，并添加以下内容：
-
-   ```plaintext
-   WX_ENV=your-wx-env
-   WX_SERVICE=your-wx-service
-   WX_APPID=wx5cc63b63f4486af0
-   WX_SECRET=37de2579db05998dcc58a42b88f33b4b
-   DB_HOST=localhost
-   DB_USER=your-db-username
-   DB_PASSWORD=your-db-password
-   DB_NAME=your-db-name
-   ```
-
-4. **运行应用程序：**
-
-   ```bash
-   npm start
-   ```
-
 ## API 端点
 
 - **GET /fetchToken**: 获取微信访问令牌。
 - **GET /fetchMediaList**: 从微信检索媒体项目列表。
 - **POST /addDraft**: 向微信添加草稿。
+
+## Docker
+
+```bash
+# 构建 Docker 镜像
+docker build -t markets-api .
+
+# 运行容器（开发环境）
+docker run -d --name markets-api -p 7676:7676 -e NODE_ENV=development -e PORT=7676 markets-api
+
+# 运行容器（生产环境）
+docker run -d --name markets-api -p 7676:7676 -e NODE_ENV=production -e PORT=7676 markets-api
+
+# 进入正在运行的容器
+docker exec -it markets-api /bin/sh
+```
+
+## pm2
+```bash
+# 启动开发环境
+pm2 start ecosystem.config.js
+pm2 start ecosystem.config.js --env development
+
+# 生产环境
+pm2 start ecosystem.config.js --env production
+
+# 查看服务列表
+pm2 list
+
+# 查看日志
+pm2 logs
+
+# 停止服务
+pm2 stop ecosystem.config.js
+
+# 删除服务
+pm2 delete ecosystem.config.js
+```
