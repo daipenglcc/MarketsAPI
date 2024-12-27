@@ -1,7 +1,5 @@
 const wechatService = require('../services/wechatService')
 const utils = require('../utils/utils')
-const fs = require('fs')
-const path = require('path')
 const dayjs = require('dayjs')
 const weekOfYear = require('dayjs/plugin/weekOfYear')
 const chineseLunar = require('chinese-lunar')
@@ -29,8 +27,6 @@ async function fetchMediaList(ctx) {
 }
 
 async function addDraft(ctx) {
-	const contentPath = path.join(__dirname, 'content.html')
-	let content = fs.readFileSync(contentPath, 'utf-8')
 	const lunar = chineseLunar.solarToLunar(new Date())
 
 	// 当前日期
@@ -48,10 +44,16 @@ async function addDraft(ctx) {
 	// 格式组装
 	const formatted = `农历${lunar.year}【${zodiac}】年${formattedLunarDate}`
 
-	content = content.replace(/\?当前日期\?/g, currentDate)
-	content = content.replace(/\?当前周\?/g, weekNumber + '周')
-	content = content.replace(/\?当前周几\?/g, daysInChinese[dayOfWeek])
-	content = content.replace(/\?当前农历\?/g, formatted)
+	let html = await ctx.render('index', {
+		title: 'Home Page',
+		message: 'Welcome to Koa2 MVC project!',
+		currentDate: currentDate,
+		weekNumber: weekNumber + '周',
+		dayOfWeek: daysInChinese[dayOfWeek],
+		formatted: formatted
+	})
+
+	console.log('html', html)
 
 	try {
 		const result = await wechatService.addDraft([
@@ -59,7 +61,7 @@ async function addDraft(ctx) {
 				title: '济南大集，周四提醒！',
 				author: '集集有你小助手',
 				// digest: '希望是灵魂的心 Hope is the heartbeat of the soul',
-				content,
+				content: html,
 				thumb_media_id: 'xiWEbz3LGTAp4Uf9H93AyofOxjOB18SjwHX1WiPidoHG7dnTwQL4Y2P5lzmCvKVT'
 			}
 		])

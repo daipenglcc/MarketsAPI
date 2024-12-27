@@ -3,6 +3,7 @@ require('dotenv').config()
 const Koa = require('koa')
 const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
+const views = require('koa-views')
 const path = require('path')
 const wechatRouter = require('./routes/wechat')
 
@@ -14,6 +15,13 @@ const environment = process.env.NODE_ENV || 'development'
 require('dotenv').config({
 	path: path.resolve(__dirname, `../.env.${environment}`)
 })
+
+// 配置模板引擎
+app.use(
+	views(path.join(__dirname, 'views'), {
+		extension: 'ejs' // 使用 EJS 作为模板引擎
+	})
+)
 
 // 使用中间件
 app.use(bodyParser())
