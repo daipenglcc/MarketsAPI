@@ -28,7 +28,6 @@ async function fetchMediaList(ctx) {
 
 async function addDraft(ctx) {
 	const lunar = chineseLunar.solarToLunar(new Date())
-
 	// 当前日期
 	const currentDate = dayjs().format('YYYY年MM月DD日')
 	// 当前周数
@@ -52,8 +51,6 @@ async function addDraft(ctx) {
 		dayOfWeek: daysInChinese[dayOfWeek],
 		formatted: formatted
 	})
-
-	console.log('html', html)
 
 	try {
 		const result = await wechatService.addDraft([

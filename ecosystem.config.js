@@ -3,7 +3,7 @@ module.exports = {
 		{
 			name: 'MarketsAPI',
 			script: 'npm',
-			args: 'run start', // 使用 npm script 启动
+			args: 'run dev',
 			watch: true,
 			env: {
 				// 默认环境配置

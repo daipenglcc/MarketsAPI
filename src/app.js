@@ -32,9 +32,6 @@ router.use('/api/wechat', wechatRouter.routes())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-console.log('PORT', process.env.PORT)
-console.log('WX_APPID', process.env.WX_APPID)
-
 const PORT = process.env.PORT || 7676
 app.listen(PORT, () => {
 	console.log('运行信息:', {
