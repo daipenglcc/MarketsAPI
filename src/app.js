@@ -6,6 +6,7 @@ const bodyParser = require('koa-bodyparser')
 const views = require('koa-views')
 const path = require('path')
 const wechatRouter = require('./routes/wechat')
+const marketRouter = require('./routes/market')
 
 const app = new Koa()
 const router = new Router()
@@ -26,9 +27,14 @@ app.use(
 // 使用中间件
 app.use(bodyParser())
 
-// 路由
+// 声明路由
+router.get('/', (ctx) => {
+	ctx.body = '欢迎使用 Koa2 + MySQL 项目！'
+})
 router.use('/api/wechat', wechatRouter.routes())
+router.use('/api/market', marketRouter.routes())
 
+// 注册路由
 app.use(router.routes())
 app.use(router.allowedMethods())
 
