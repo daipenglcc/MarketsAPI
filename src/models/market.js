@@ -50,16 +50,16 @@ const Market = sequelize.define(
 	}
 )
 
-// 同步数据库模型
-async function syncModel() {
-	try {
-		await Market.sync({ force: true }) // 如果表存在则删除重建
-		console.log('Market 表已同步！')
-	} catch (error) {
-		console.error('同步 Market 表时发生错误：', error)
-	}
-}
+// // 同步数据库模型
+// async function syncModel() {
+// 	try {
+// 		await Market.sync({ force: true }) // 如果表存在则删除重建
+// 		console.log('Market 表已同步！')
+// 	} catch (error) {
+// 		console.error('同步 Market 表时发生错误：', error)
+// 	}
+// }
 
-syncModel()
+// syncModel()
 
 module.exports = Market

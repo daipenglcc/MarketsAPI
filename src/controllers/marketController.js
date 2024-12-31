@@ -9,30 +9,35 @@ async function createMerchant() {
 	console.log('创建大集:', merchant.name)
 }
 
-// 批量创建商户
+// 批量创建大集
 async function createMerchants(ctx) {
-	// const { access_token } = ctx.request.query
-	console.log('XXXXX1', ctx.request.body)
-	// try {
-	// 	// 使用 bulkCreate 批量插入商户数据
-	// 	const merchants = await Merchant.bulkCreate(merchantsData)
+	const merchantsData = ctx.request.body.merchantsData
+	try {
+		// 使用 bulkCreate 批量插入大集数据
+		const merchants = await Merchant.bulkCreate(merchantsData)
 
-	// 	// 输出成功创建的商户数量
-	// 	console.log(`成功创建了 ${merchants.length} 个商户`)
+		// 输出成功创建的大集数量
+		console.log(`成功创建了 ${merchants.length} 个大集`)
 
-	// 	// 如果你想显示每个商户的名称，可以遍历并打印
-	// 	merchants.forEach((merchant) => {
-	// 		console.log('创建大集:', merchant.name)
-	// 	})
-	// } catch (error) {
-	// 	console.error('批量创建商户失败:', error)
-	// }
+		// 如果你想显示每个大集的名称，可以遍历并打印
+		merchants.forEach((merchant) => {
+			console.log('创建大集:', merchant.name)
+		})
+	} catch (error) {
+		console.error('批量创建大集失败:', error)
+	}
 }
 
 // 查询所有大集信息
-async function getMerchants() {
-	const merchants = await Merchant.findAll()
-	console.log('所有大集:', merchants)
+async function getMerchants(ctx) {
+	try {
+		const merchants = await Merchant.findAll()
+		console.log('所有大集:', merchants)
+		ctx.body = { code: 200, data: merchants }
+	} catch (error) {
+		ctx.code = -200
+		ctx.body = { code: -200, message: error.message }
+	}
 }
 
 async function getMerchantByName(name) {
