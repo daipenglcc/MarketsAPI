@@ -57,6 +57,22 @@ function formatLunar(lunar) {
 	return `${month}${day}`
 }
 
+function numberToChinese(num) {
+	let nums = '' + num
+	if (nums.length == 2) {
+		nums = nums[nums.length - 1]
+	}
+	const chineseNumbers = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
+
+	// 如果 num 介于 1 到 10 之间，直接返回
+	if (nums >= 1 && nums <= 10) {
+		return chineseNumbers[nums]
+	} else {
+		return '数字超出范围'
+	}
+}
+
 module.exports = {
-	formatLunar
+	formatLunar,
+	numberToChinese
 }
