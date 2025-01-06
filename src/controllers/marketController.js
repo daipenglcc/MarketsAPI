@@ -2,7 +2,7 @@ const dayjs = require('dayjs')
 const Market = require('../models/market')
 const utils = require('../utils/utils')
 const chineseLunar = require('chinese-lunar')
-const { Op, Sequelize } = require('sequelize')
+const { Op } = require('sequelize')
 
 // async function createMerchant() {
 // 	const merchant = await Market.create({
@@ -35,12 +35,20 @@ async function createMerchants(ctx) {
 // 查询所有大集信息
 async function getMerchants(ctx) {
 	try {
-		const merchants = await Market.findAll()
+		// const merchants = await Market.findAll()
+		// ctx.body = {
+		// 	code: 200,
+		// 	data: {
+		// 		merchants: merchants,
+		// 		count: merchants.length
+		// 	}
+		// }
+
 		ctx.body = {
 			code: 200,
 			data: {
-				merchants: merchants,
-				count: merchants.length
+				merchants: [],
+				count: 0
 			}
 		}
 	} catch (error) {
@@ -55,6 +63,7 @@ async function getMerchantByDate(ctx) {
 		if (!nowDate) {
 			nowDate = dayjs().format('YYYY-MM-DD')
 		}
+		console.log('当前时间', nowDate)
 		const lunarData = chineseLunar.solarToLunar(new Date(nowDate))
 		const lunar = utils.numberToChinese(lunarData.day - 1) // 获取农历日期
 		console.log('农历日期', lunar)
