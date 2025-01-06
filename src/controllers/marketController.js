@@ -59,15 +59,23 @@ async function getMerchants(ctx) {
 
 async function getMerchantByDate(ctx) {
 	try {
-		let nowDate = ctx.request.query.nowDate
-		if (!nowDate) {
-			nowDate = dayjs().format('YYYY-MM-DD')
+		// 获取当前日期或传入的日期
+		let nowDate = ctx.request.query.nowDate || dayjs().format('YYYY-MM-DD')
+		console.log('当前时间:', nowDate)
+
+		// 校验日期格式（确保格式为 YYYY-MM-DD）
+		if (!dayjs(nowDate, 'YYYY-MM-DD', true).isValid()) {
+			throw new Error('Invalid date format. Expected YYYY-MM-DD.')
 		}
-		console.log('当前时间', nowDate)
-		const lunarData = chineseLunar.solarToLunar(new Date(nowDate))
-		console.log('lunarData', lunarData)
-		const lunar = utils.numberToChinese(lunarData.day - 1) // 获取农历日期
-		console.log('农历日期', lunar)
+
+		// 转换为标准日期对象并计算农历
+		const dateObject = dayjs(nowDate).startOf('day').toDate() // 强制为当天零点时间
+		const lunarData = chineseLunar.solarToLunar(dateObject)
+		console.log('Lunar Data:', lunarData)
+
+		// 获取农历日期并转换为中文
+		const lunar = utils.numberToChinese(lunarData.day) // 农历日期从 1 开始，减 1 获取索引
+		console.log('农历日期:', lunar)
 
 		const merchants = await Market.findAll({
 			where: {
