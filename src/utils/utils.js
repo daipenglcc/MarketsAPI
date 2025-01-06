@@ -58,6 +58,7 @@ function formatLunar(lunar) {
 }
 
 function numberToChinese(num) {
+	console.log('num', num)
 	let nums = '' + num
 	if (nums.length == 2) {
 		nums = nums[nums.length - 1]

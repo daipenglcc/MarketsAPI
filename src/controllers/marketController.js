@@ -65,6 +65,7 @@ async function getMerchantByDate(ctx) {
 		}
 		console.log('当前时间', nowDate)
 		const lunarData = chineseLunar.solarToLunar(new Date(nowDate))
+		console.log('lunarData', lunarData)
 		const lunar = utils.numberToChinese(lunarData.day - 1) // 获取农历日期
 		console.log('农历日期', lunar)
 
