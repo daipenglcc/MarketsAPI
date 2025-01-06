@@ -4,12 +4,8 @@
 	</head>
 	<body>
 		<div style="width: 750px; margin: auto">
-			<center>
-				<img
-					src="https://bucket.vues.cn/jjyn/PDLZRHRSW4905527_v1_i1.jpg"
-					style="width: 100%; border-radius: 10px; margin-top: 0"
-				/>
-			</center>
+			<p style="text-align: center; visibility: visible;">
+				<img class="rich_pages wxw-img" data-imgfileid="100000016" data-ratio="0.4255555555555556" data-s="300,640" data-type="jpeg" data-w="900" style="height: auto !important; visibility: visible !important; width: 677px !important;" data-original-style="" data-index="1" src="https://mmbiz.qpic.cn/mmbiz_jpg/7XkntTQOU7Wn1lAqVQOWcibFfdia8ZqYO5yLuKOhibT5JDibWFNdXIYW0V1Wlogiavxg9uwryeoQyia2jPfmcURTCib4Q/640?wx_fmt=jpeg&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" _width="677px" crossorigin="anonymous" alt="图片" data-fail="0"></p>
 			<h1
 				style="
 					text-align: center;
@@ -81,37 +77,12 @@
 			>
 				【每日英语】Hope is the heartbeat of the soul.希望是灵魂的心跳。
 			</p> -->
-			<h2
-				style="
-					text-align: center;
-					line-height: 1.75;
-					font-family:
-						-apple-system-font,
-						BlinkMacSystemFont,
-						Helvetica Neue,
-						PingFang SC,
-						Hiragino Sans GB,
-						Microsoft YaHei UI,
-						Microsoft YaHei,
-						Arial,
-						sans-serif;
-					font-size: 18.2px;
-					display: table;
-					padding: 0.3em 1em;
-					margin: 2em auto 2em;
-					color: #fff;
-					background: #0f4c81;
-					font-weight: bold;
-					border-radius: 8px;
-					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-				"
-			>
-				历下区
-			</h2>
-			<div style="width: 750px; margin: auto">
-				<section
+
+			<!-- 大集list -->
+			<% groupedRegion.forEach(function(regionGroup) { %>
+				<h2
 					style="
-						text-align: left;
+						text-align: center;
 						line-height: 1.75;
 						font-family:
 							-apple-system-font,
@@ -123,104 +94,61 @@
 							Microsoft YaHei,
 							Arial,
 							sans-serif;
-						font-size: 14px;
+						font-size: 18.2px;
+						display: table;
+						padding: 0.3em 1em;
+						margin: 2em auto 2em;
+						color: #fff;
+						background: #0f4c81;
+						font-weight: bold;
+						border-radius: 8px;
+						box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 					"
 				>
-					<section style="padding: 0 8px; max-width: 100%; overflow: auto">
-						<table class="preview-table">
-							<thead
-								style="
-									text-align: left;
-									line-height: 1.75;
-									font-family:
-										-apple-system-font,
-										BlinkMacSystemFont,
-										Helvetica Neue,
-										PingFang SC,
-										Hiragino Sans GB,
-										Microsoft YaHei UI,
-										Microsoft YaHei,
-										Arial,
-										sans-serif;
-									font-size: 14px;
-									background: rgba(0, 0, 0, 0.05);
-									font-weight: bold;
-									color: #fff;
-								"
-							>
-								<tr>
-									<td
-										style="
-											text-align: left;
-											line-height: 1.75;
-											font-family:
-												-apple-system-font,
-												BlinkMacSystemFont,
-												Helvetica Neue,
-												PingFang SC,
-												Hiragino Sans GB,
-												Microsoft YaHei UI,
-												Microsoft YaHei,
-												Arial,
-												sans-serif;
-											font-size: 14px;
-											border: 1px solid #dfdfdf;
-											padding: 0.5em 1em;
-											color: #3f3f3f;
-											word-break: keep-all;
-										"
-									>
-										名称
-									</td>
-									<td
-										style="
-											text-align: left;
-											line-height: 1.75;
-											font-family:
-												-apple-system-font,
-												BlinkMacSystemFont,
-												Helvetica Neue,
-												PingFang SC,
-												Hiragino Sans GB,
-												Microsoft YaHei UI,
-												Microsoft YaHei,
-												Arial,
-												sans-serif;
-											font-size: 14px;
-											border: 1px solid #dfdfdf;
-											padding: 0.5em 1em;
-											color: #3f3f3f;
-											word-break: keep-all;
-										"
-									>
-										地址
-									</td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td
-										style="
-											text-align: left;
-											line-height: 1.75;
-											font-family:
-												-apple-system-font,
-												BlinkMacSystemFont,
-												Helvetica Neue,
-												PingFang SC,
-												Hiragino Sans GB,
-												Microsoft YaHei UI,
-												Microsoft YaHei,
-												Arial,
-												sans-serif;
-											font-size: 14px;
-											border: 1px solid #dfdfdf;
-											padding: 0.5em 1em;
-											color: #3f3f3f;
-											word-break: keep-all;
-										"
-									>
-										<span
+				<%= regionGroup.name %>
+				</h2>
+				<div style="width: 750px; margin: auto">
+					<section
+						style="
+							text-align: left;
+							line-height: 1.75;
+							font-family:
+								-apple-system-font,
+								BlinkMacSystemFont,
+								Helvetica Neue,
+								PingFang SC,
+								Hiragino Sans GB,
+								Microsoft YaHei UI,
+								Microsoft YaHei,
+								Arial,
+								sans-serif;
+							font-size: 14px;
+						"
+					>
+						<section style="padding: 0 8px; max-width: 100%; overflow: auto">
+							<table class="preview-table">
+								<thead
+									style="
+										text-align: left;
+										line-height: 1.75;
+										font-family:
+											-apple-system-font,
+											BlinkMacSystemFont,
+											Helvetica Neue,
+											PingFang SC,
+											Hiragino Sans GB,
+											Microsoft YaHei UI,
+											Microsoft YaHei,
+											Arial,
+											sans-serif;
+										font-size: 14px;
+										background: rgba(0, 0, 0, 0.05);
+										font-weight: bold;
+										color: #fff;
+									"
+								>
+									<tr>
+										<td
 											style="
 												text-align: left;
 												line-height: 1.75;
@@ -235,44 +163,15 @@
 													Arial,
 													sans-serif;
 												font-size: 14px;
-												color: #576b95;
+												border: 1px solid #dfdfdf;
+												padding: 0.5em 1em;
+												color: #3f3f3f;
+												word-break: keep-all;
 											"
-											><a
-												class="weapp_text_link js_weapp_entry wx_tap_link js_wx_tap_highlight"
-												style="font-size: 14px"
-												data-miniprogram-appid="wx56a9e6643c88edb7"
-												data-miniprogram-path="pages/index/index"
-												data-miniprogram-applink=""
-												data-miniprogram-nickname="集集有你"
-												href=""
-												data-miniprogram-type="text"
-												data-miniprogram-servicetype=""
-												>亿来森大集</a
-											></span
 										>
-									</td>
-									<td
-										style="
-											text-align: left;
-											line-height: 1.75;
-											font-family:
-												-apple-system-font,
-												BlinkMacSystemFont,
-												Helvetica Neue,
-												PingFang SC,
-												Hiragino Sans GB,
-												Microsoft YaHei UI,
-												Microsoft YaHei,
-												Arial,
-												sans-serif;
-											font-size: 14px;
-											border: 1px solid #dfdfdf;
-											padding: 0.5em 1em;
-											color: #3f3f3f;
-											word-break: keep-all;
-										"
-									>
-										<span
+											名称
+										</td>
+										<td
 											style="
 												text-align: left;
 												line-height: 1.75;
@@ -287,63 +186,168 @@
 													Arial,
 													sans-serif;
 												font-size: 14px;
-												color: #576b95;
+												border: 1px solid #dfdfdf;
+												padding: 0.5em 1em;
+												color: #3f3f3f;
+												word-break: keep-all;
 											"
 										>
-											<a
-												class="weapp_text_link js_weapp_entry wx_tap_link js_wx_tap_highlight"
-												style="font-size: 14px"
-												data-miniprogram-appid="wx56a9e6643c88edb7"
-												data-miniprogram-path="pages/index/index"
-												data-miniprogram-applink=""
-												data-miniprogram-nickname="集集有你"
-												href=""
-												data-miniprogram-type="text"
-												data-miniprogram-servicetype=""
-												>花园东路 4 号院内</a
+											地址
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<% regionGroup.children.forEach(function(child) { %>
+									<tr>
+										<td
+											style="
+												text-align: left;
+												line-height: 1.75;
+												font-family:
+													-apple-system-font,
+													BlinkMacSystemFont,
+													Helvetica Neue,
+													PingFang SC,
+													Hiragino Sans GB,
+													Microsoft YaHei UI,
+													Microsoft YaHei,
+													Arial,
+													sans-serif;
+												font-size: 14px;
+												border: 1px solid #dfdfdf;
+												padding: 0.5em 1em;
+												color: #3f3f3f;
+												word-break: keep-all;
+											"
+										>
+											<span
+												style="
+													text-align: left;
+													line-height: 1.75;
+													font-family:
+														-apple-system-font,
+														BlinkMacSystemFont,
+														Helvetica Neue,
+														PingFang SC,
+														Hiragino Sans GB,
+														Microsoft YaHei UI,
+														Microsoft YaHei,
+														Arial,
+														sans-serif;
+													font-size: 14px;
+													color: #576b95;
+												"
+												><a
+													class="weapp_text_link js_weapp_entry wx_tap_link js_wx_tap_highlight"
+													style="font-size: 14px"
+													data-miniprogram-appid="wx56a9e6643c88edb7"
+													data-miniprogram-path="pages/index/index"
+													data-miniprogram-applink=""
+													data-miniprogram-nickname="集集有你"
+													href=""
+													data-miniprogram-type="text"
+													data-miniprogram-servicetype=""
+													><%= child.name %></a
+												></span
 											>
-										</span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+										</td>
+										<td
+											style="
+												text-align: left;
+												line-height: 1.75;
+												font-family:
+													-apple-system-font,
+													BlinkMacSystemFont,
+													Helvetica Neue,
+													PingFang SC,
+													Hiragino Sans GB,
+													Microsoft YaHei UI,
+													Microsoft YaHei,
+													Arial,
+													sans-serif;
+												font-size: 14px;
+												border: 1px solid #dfdfdf;
+												padding: 0.5em 1em;
+												color: #3f3f3f;
+												word-break: keep-all;
+											"
+										>
+											<span
+												style="
+													text-align: left;
+													line-height: 1.75;
+													font-family:
+														-apple-system-font,
+														BlinkMacSystemFont,
+														Helvetica Neue,
+														PingFang SC,
+														Hiragino Sans GB,
+														Microsoft YaHei UI,
+														Microsoft YaHei,
+														Arial,
+														sans-serif;
+													font-size: 14px;
+													color: #576b95;
+												"
+											>
+												<a
+													class="weapp_text_link js_weapp_entry wx_tap_link js_wx_tap_highlight"
+													style="font-size: 14px"
+													data-miniprogram-appid="wx56a9e6643c88edb7"
+													data-miniprogram-path="pages/index/index"
+													data-miniprogram-applink=""
+													data-miniprogram-nickname="集集有你"
+													href=""
+													data-miniprogram-type="text"
+													data-miniprogram-servicetype=""
+													><%= child.address %></a
+												>
+											</span>
+										</td>
+									</tr>
+									<% }); %>
+								</tbody>
+							</table>
+						</section>
+
+						<style>
+							.preview-wrapper pre::before {
+								position: absolute;
+								top: 0;
+								right: 0;
+								color: #ccc;
+								text-align: center;
+								font-size: 0.8em;
+								padding: 5px 10px 0;
+								line-height: 15px;
+								height: 15px;
+								font-weight: 600;
+							}
+						</style>
+
+						<style>
+							.hljs.code__pre > .mac-sign {
+								display: flex;
+							}
+						</style>
+
+						<style>
+							.code__pre {
+								padding: 0 !important;
+							}
+
+							.hljs.code__pre code {
+								display: -webkit-box;
+								padding: 0.5em 1em 1em;
+								overflow-x: auto;
+								text-indent: 0;
+							}
+						</style>
 					</section>
+				</div>
+			<% }); %>
 
-					<style>
-						.preview-wrapper pre::before {
-							position: absolute;
-							top: 0;
-							right: 0;
-							color: #ccc;
-							text-align: center;
-							font-size: 0.8em;
-							padding: 5px 10px 0;
-							line-height: 15px;
-							height: 15px;
-							font-weight: 600;
-						}
-					</style>
-
-					<style>
-						.hljs.code__pre > .mac-sign {
-							display: flex;
-						}
-					</style>
-
-					<style>
-						.code__pre {
-							padding: 0 !important;
-						}
-
-						.hljs.code__pre code {
-							display: -webkit-box;
-							padding: 0.5em 1em 1em;
-							overflow-x: auto;
-							text-indent: 0;
-						}
-					</style>
-				</section>
-			</div>
+			<!-- 横线 -->
 			<section
 				style="
 					margin-top: 3em;

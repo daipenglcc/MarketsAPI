@@ -1,4 +1,5 @@
 const wechatService = require('../services/wechatService')
+const Market = require('../models/market')
 const utils = require('../utils/utils')
 const dayjs = require('dayjs')
 const weekOfYear = require('dayjs/plugin/weekOfYear')
@@ -43,13 +44,15 @@ async function addDraft(ctx) {
 	// 格式组装
 	const formatted = `农历${lunar.year}【${zodiac}】年${formattedLunarDate}`
 
+	// const aaa = test()
+	const obj = await Market.getMarketByDate()
+
 	let html = await ctx.render('index', {
-		title: 'Home Page',
-		message: 'Welcome to Koa2 MVC project!',
 		currentDate: currentDate,
 		weekNumber: weekNumber + '周',
 		dayOfWeek: daysInChinese[dayOfWeek],
-		formatted: formatted
+		formatted: formatted,
+		groupedRegion: obj.result
 	})
 
 	try {
@@ -62,6 +65,7 @@ async function addDraft(ctx) {
 				thumb_media_id: 'xiWEbz3LGTAp4Uf9H93AyofOxjOB18SjwHX1WiPidoHG7dnTwQL4Y2P5lzmCvKVT'
 			}
 		])
+
 		ctx.body = { success: true, result }
 	} catch (error) {
 		ctx.status = 500
@@ -89,6 +93,53 @@ async function fetchDraft(ctx) {
 	} catch (error) {
 		ctx.status = 500
 		ctx.body = { success: false, message: error.message }
+	}
+}
+
+async function test(ctx) {
+	try {
+		// 获取当前日期或传入的日期
+		let nowDate = ctx?.request.query.nowDate || dayjs().format('YYYY-MM-DD')
+		console.log('nowDate', nowDate)
+		// 校验日期格式（确保格式为 YYYY-MM-DD）
+		if (!dayjs(nowDate, 'YYYY-MM-DD', true).isValid()) {
+			throw new Error('Invalid date format. Expected YYYY-MM-DD.')
+		}
+
+		// 转换为标准日期对象并计算农历
+		const dateObject = dayjs(nowDate).startOf('day').toDate() // 强制为当天零点时间
+		const lunarData = chineseLunar.solarToLunar(dateObject)
+
+		// 获取农历日期并转换为中文
+		const lunar = utils.numberToChinese(lunarData.day)
+
+		const merchants = await Market.findAll({
+			attributes: ['id', 'region', 'name', 'address'],
+			where: {
+				dates: {
+					[Op.like]: `%${lunar}%` // 动态使用 lunar 的值作为查询条件
+				}
+			}
+		})
+
+		// 获取所有区域的去重值
+		const regions = [...new Set(merchants.map((item) => item.region))]
+
+		// 定义区域分组逻辑
+		const result = []
+
+		regions.forEach((regionName) => {
+			const groupedRegion = {
+				name: regionName,
+				children: merchants.filter((item) => item.region === regionName)
+			}
+			result.push(groupedRegion)
+		})
+
+		return result
+		// console.log('result', result)
+	} catch (error) {
+		console.log(error)
 	}
 }
 

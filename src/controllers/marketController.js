@@ -1,8 +1,5 @@
 const dayjs = require('dayjs')
 const Market = require('../models/market')
-const utils = require('../utils/utils')
-const chineseLunar = require('chinese-lunar')
-const { Op } = require('sequelize')
 
 // async function createMerchant() {
 // 	const merchant = await Market.create({
@@ -61,39 +58,12 @@ async function getMerchantByDate(ctx) {
 	try {
 		// 获取当前日期或传入的日期
 		let nowDate = ctx.request.query.nowDate || dayjs().format('YYYY-MM-DD')
+		const obj = await Market.getMarketByDate(nowDate)
 
-		// 校验日期格式（确保格式为 YYYY-MM-DD）
-		if (!dayjs(nowDate, 'YYYY-MM-DD', true).isValid()) {
-			throw new Error('Invalid date format. Expected YYYY-MM-DD.')
-		}
-
-		// 转换为标准日期对象并计算农历
-		const dateObject = dayjs(nowDate).startOf('day').toDate() // 强制为当天零点时间
-		const lunarData = chineseLunar.solarToLunar(dateObject)
-
-		// 获取农历日期并转换为中文
-		const lunar = utils.numberToChinese(lunarData.day)
-
-		const merchants = await Market.findAll({
-			where: {
-				dates: {
-					[Op.like]: `%${lunar}%` // 动态使用 lunar 的值作为查询条件
-				}
-			}
-		})
-
-		if (merchants) {
-			ctx.body = {
-				code: 200,
-				message: `阳历时间为：'${nowDate}'，农历标识为'${lunar}'，找到大集${merchants.length}个`,
-				data: merchants
-			}
-		} else {
-			ctx.body = {
-				code: 200,
-				message: `阳历时间为：'${nowDate}'，农历标识为'${lunar}'，找到大集${merchants.length}个`,
-				data: merchants
-			}
+		ctx.body = {
+			code: 200,
+			message: `阳历时间为：'${nowDate}'，农历标识为'${obj.lunar}'，找到大集${obj.merchants.length}个`,
+			data: obj.result
 		}
 	} catch (error) {
 		console.log('error', error)
