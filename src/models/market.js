@@ -108,7 +108,6 @@ async function getMarketByDate(date) {
 			result.push(groupedRegion)
 		})
 
-		// console.log('result', result)
 		return { merchants, result, lunar }
 	} catch (error) {
 		console.log('error', error)

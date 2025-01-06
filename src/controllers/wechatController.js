@@ -44,7 +44,6 @@ async function addDraft(ctx) {
 	// 格式组装
 	const formatted = `农历${lunar.year}【${zodiac}】年${formattedLunarDate}`
 
-	// const aaa = test()
 	const obj = await Market.getMarketByDate()
 
 	let html = await ctx.render('index', {
@@ -58,11 +57,11 @@ async function addDraft(ctx) {
 	try {
 		const result = await wechatService.addDraft([
 			{
-				title: '济南大集，周四提醒！',
+				title: `济南大集，${daysInChinese[dayOfWeek]}提醒！`,
 				author: '集集有你小助手',
 				// digest: '希望是灵魂的心 Hope is the heartbeat of the soul',
 				content: html,
-				thumb_media_id: 'xiWEbz3LGTAp4Uf9H93AyofOxjOB18SjwHX1WiPidoHG7dnTwQL4Y2P5lzmCvKVT'
+				thumb_media_id: 'xiWEbz3LGTAp4Uf9H93AyrKFR3sIJqEziIvnnBIu9CfFpDXViISkyn3X7uyIvu26'
 			}
 		])
 
