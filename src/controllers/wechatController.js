@@ -1,5 +1,6 @@
 const wechatService = require('../services/wechatService')
 const Market = require('../models/market')
+const Banner = require('../models/banner')
 const utils = require('../utils/utils')
 const dayjs = require('dayjs')
 const weekOfYear = require('dayjs/plugin/weekOfYear')
@@ -54,6 +55,9 @@ async function addDraft(ctx) {
 		groupedRegion: obj.result
 	})
 
+	const result = await Banner.getBannersByName(daysInChinese[dayOfWeek])
+	const thumb_media_id = result.data.dataValues.media_id
+
 	try {
 		const result = await wechatService.addDraft([
 			{
@@ -61,7 +65,7 @@ async function addDraft(ctx) {
 				author: '集集有你小助手',
 				// digest: '希望是灵魂的心 Hope is the heartbeat of the soul',
 				content: html,
-				thumb_media_id: 'xiWEbz3LGTAp4Uf9H93AyrKFR3sIJqEziIvnnBIu9CfFpDXViISkyn3X7uyIvu26'
+				thumb_media_id
 			}
 		])
 

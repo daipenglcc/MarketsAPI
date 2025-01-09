@@ -63,7 +63,12 @@ function numberToChinese(num) {
 	if (nums.length == 2) {
 		nums = nums[nums.length - 1]
 	}
+	if (nums == '0') {
+		nums = 10
+	}
 	const chineseNumbers = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
+
+	console.log('nums', nums)
 
 	// 如果 num 介于 1 到 10 之间，直接返回
 	if (nums >= 1 && nums <= 10) {
