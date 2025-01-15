@@ -55,7 +55,8 @@ async function addDraft(ctx) {
 		groupedRegion: obj.result
 	})
 
-	const result = await Banner.getBannersByName(daysInChinese[dayOfWeek])
+	const nowWeek = daysInChinese[dayOfWeek]
+	const result = await Banner.getBannersByName(nowWeek)
 	const thumb_media_id = result.data.dataValues.media_id
 
 	try {

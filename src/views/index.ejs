@@ -4,10 +4,6 @@
 	</head>
 	<body>
 		<div style="width: 750px; margin: auto">
-			<section style="text-align: left; justify-content: flex-start; display: flex; flex-flow: row; margin: 10px 0px; box-sizing: border-box; visibility: visible;"><section style="display: inline-block; vertical-align: bottom; width: auto; align-self: flex-end; flex: 0 0 0%; height: auto; box-sizing: border-box; visibility: visible;"><section style="transform: perspective(0px); transform-style: flat; box-sizing: border-box; visibility: visible;"><section style="text-align: center; transform: rotateX(180deg); margin: 0px 0px 1px; box-sizing: border-box; visibility: visible;"><section style="display: inline-block; width: 9px; height: 9px; vertical-align: top; overflow: hidden; border-radius: 60px; background-color: rgb(166, 189, 145); box-sizing: border-box; visibility: visible;"><section style="text-align: justify; box-sizing: border-box; visibility: visible;"><p style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box; visibility: visible;"><br style="box-sizing: border-box; visibility: visible;"></p></section></section></section></section></section><section style="display: inline-block; vertical-align: bottom; width: auto; align-self: flex-end; min-width: 5%; max-width: 100%; flex: 0 0 auto; height: auto; padding: 0px 10px 0px 7px; box-sizing: border-box; visibility: visible;"><section style="text-align: justify; color: rgb(135, 155, 116); box-sizing: border-box; visibility: visible;"><p style="white-space: normal; margin: 0px; padding: 0px; box-sizing: border-box; visibility: visible;">点击蓝字 关注我们</p></section><section style="text-align: center; margin: 0px; box-sizing: border-box; visibility: visible;"><section style="background-color: rgb(135, 155, 116); height: 1px; box-sizing: border-box; visibility: visible;"><svg viewBox="0 0 1 1" style="float: left; line-height: 0; width: 0px; vertical-align: top; visibility: visible;"></svg></section> </section></section><section style="display: inline-block; vertical-align: bottom; width: auto; align-self: flex-end; flex: 0 0 auto; min-width: 5%; max-width: 100%; height: auto; background-color: rgb(166, 189, 145); padding: 0px 5px; box-sizing: border-box; visibility: visible;"><section style="text-align: right; box-sizing: border-box; visibility: visible;"><section style="font-size: 9px; color: rgb(242, 247, 240); box-sizing: border-box; visibility: visible;"><p style="margin: 0px; padding: 0px; box-sizing: border-box; visibility: visible;">SUMMER</p></section></section></section></section>
-			<!-- <p style="text-align: center; visibility: visible;">
-				<img class="rich_pages wxw-img" data-imgfileid="100000016" data-ratio="0.4255555555555556" data-s="300,640" data-type="jpeg" data-w="900" style="height: auto !important; visibility: visible !important; width: 677px !important;" data-original-style="" data-index="1" src="https://mmbiz.qpic.cn/mmbiz_jpg/7XkntTQOU7Wn1lAqVQOWcibFfdia8ZqYO5yLuKOhibT5JDibWFNdXIYW0V1Wlogiavxg9uwryeoQyia2jPfmcURTCib4Q/640?wx_fmt=jpeg&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" _width="677px" crossorigin="anonymous" alt="图片" data-fail="0">
-			</p> -->
 			<h1
 				style="
 					text-align: center;
@@ -26,7 +22,7 @@
 					display: table;
 					padding: 0.5em 1em;
 					border-bottom: 2px solid #0f4c81;
-					margin: 2em auto 1em;
+					margin: 1em auto 1em;
 					color: hsl(var(--foreground));
 					font-weight: bold;
 					text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -57,28 +53,6 @@
 				<%= currentDate %>，第<%= weekNumber %>，<%= formatted %>，<%= dayOfWeek
 				%>，大家上午好，工作虽然辛苦，但也不要忘了休息，起来去茶水间、厕所或者走廊活动活动身体，祝愿所有打工人愉快地度过每一天...
 			</p>
-			<!-- <p
-				style="
-					text-align: justify;
-					line-height: 1.75;
-					font-family:
-						-apple-system-font,
-						BlinkMacSystemFont,
-						Helvetica Neue,
-						PingFang SC,
-						Hiragino Sans GB,
-						Microsoft YaHei UI,
-						Microsoft YaHei,
-						Arial,
-						sans-serif;
-					font-size: 14px;
-					margin: 1.5em 8px;
-					letter-spacing: 0.1em;
-					color: hsl(var(--foreground));
-				"
-			>
-				【每日英语】Hope is the heartbeat of the soul.希望是灵魂的心跳。
-			</p> -->
 
 			<!-- 大集list -->
 			<% groupedRegion.forEach(function(regionGroup) { %>
@@ -444,6 +418,10 @@
 					padding: 0.5em 1em 1em;
 					overflow-x: auto;
 					text-indent: 0;
+				}
+
+				.rich_media_content p{
+					display: none!important;
 				}
 			</style>
 		</div>
