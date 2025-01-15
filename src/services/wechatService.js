@@ -88,10 +88,27 @@ async function fetchDraft(data) {
 	}
 }
 
+async function sendArticle(data) {
+	try {
+		const token = await getWeChatToken()
+		const response = await axios.post(
+			`https://api.weixin.qq.com/cgi-bin/freepublish/submit?access_token=${token}`,
+			{
+				media_id: data.media_id
+			}
+		)
+		return response.data
+	} catch (error) {
+		console.error('Error adding draft:', error)
+		throw new Error('Failed to add draft')
+	}
+}
+
 module.exports = {
 	getWeChatToken,
 	getWeChatMediaList,
 	addDraft,
 	fetchDraftList,
-	fetchDraft
+	fetchDraft,
+	sendArticle
 }

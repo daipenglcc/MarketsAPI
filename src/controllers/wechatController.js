@@ -1,12 +1,14 @@
 const wechatService = require('../services/wechatService')
 const Market = require('../models/market')
 const Banner = require('../models/banner')
+const Draft = require('../models/draft')
 const utils = require('../utils/utils')
 const dayjs = require('dayjs')
 const weekOfYear = require('dayjs/plugin/weekOfYear')
 const chineseLunar = require('chinese-lunar')
 dayjs.extend(weekOfYear)
 
+// 获取微信 access_token
 async function fetchToken(ctx) {
 	try {
 		const data = await wechatService.getWeChatToken()
@@ -17,8 +19,8 @@ async function fetchToken(ctx) {
 	}
 }
 
+// 获取素材列表
 async function fetchMediaList(ctx) {
-	// const { access_token } = ctx.request.query
 	try {
 		const data = await wechatService.getWeChatMediaList()
 		ctx.body = { code: 200, data: data }
@@ -28,6 +30,7 @@ async function fetchMediaList(ctx) {
 	}
 }
 
+// 新增草稿
 async function addDraft(ctx) {
 	const lunar = chineseLunar.solarToLunar(new Date())
 	// 当前日期
@@ -60,15 +63,21 @@ async function addDraft(ctx) {
 	const thumb_media_id = result.data.dataValues.media_id
 
 	try {
+		let title = `济南大集，${daysInChinese[dayOfWeek]}提醒！`
 		const result = await wechatService.addDraft([
 			{
-				title: `济南大集，${daysInChinese[dayOfWeek]}提醒！`,
+				title,
 				author: '集集有你小助手',
 				// digest: '希望是灵魂的心 Hope is the heartbeat of the soul',
 				content: html,
 				thumb_media_id
 			}
 		])
+		// 数据库插入数据
+		await Draft.sendDraft({
+			media_id: result.media_id,
+			title
+		})
 
 		ctx.body = { success: true, result }
 	} catch (error) {
@@ -77,6 +86,7 @@ async function addDraft(ctx) {
 	}
 }
 
+// 获取草稿列表
 async function fetchDraftList(ctx) {
 	try {
 		const result = await wechatService.fetchDraftList()
@@ -87,11 +97,28 @@ async function fetchDraftList(ctx) {
 	}
 }
 
+// 获取草稿详情
 async function fetchDraft(ctx) {
 	const { media_id } = ctx.request.query
 	try {
 		const result = await wechatService.fetchDraft({
 			media_id: media_id
+		})
+		ctx.body = { success: true, result }
+	} catch (error) {
+		ctx.status = 500
+		ctx.body = { success: false, message: error.message }
+	}
+}
+
+// 文章发布
+async function submitArticle(ctx) {
+	try {
+		// 查询最后一条草稿
+		const ret = await Draft.getLastDraft()
+		// 发布文章
+		const result = await wechatService.sendArticle({
+			media_id: ret.data.media_id
 		})
 		ctx.body = { success: true, result }
 	} catch (error) {
@@ -152,5 +179,6 @@ module.exports = {
 	fetchMediaList,
 	addDraft,
 	fetchDraftList,
-	fetchDraft
+	fetchDraft,
+	submitArticle
 }
