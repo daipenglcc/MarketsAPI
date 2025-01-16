@@ -13,8 +13,8 @@ async function getWeChatToken() {
 
 		return response.data.access_token
 	} catch (error) {
-		console.error('Error fetching OpenID:', error)
-		throw new Error('Failed to fetch OpenID')
+		console.error('Error Token:', error)
+		throw new Error('Token获取失败')
 	}
 }
 
