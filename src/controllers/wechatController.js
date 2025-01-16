@@ -80,6 +80,7 @@ async function addDraft(ctx) {
 		})
 
 		ctx.body = { success: true, result }
+		return result
 	} catch (error) {
 		ctx.status = 500
 		ctx.body = { success: false, message: error.message }
@@ -115,10 +116,15 @@ async function fetchDraft(ctx) {
 async function submitArticle(ctx) {
 	try {
 		// 查询最后一条草稿
-		const ret = await Draft.getLastDraft()
+		// const ret = await Draft.getLastDraft()
+
+		// 先调用 addDraft 方法
+		const ret = await addDraft(ctx)
+		console.log('XXXret', ret)
+
 		// 发布文章
 		const result = await wechatService.sendArticle({
-			media_id: ret.data.media_id
+			media_id: ret.media_id
 		})
 		ctx.body = { success: true, result }
 	} catch (error) {
