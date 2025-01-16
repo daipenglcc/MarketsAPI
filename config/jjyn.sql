@@ -23,6 +23,119 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `banners`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `banners` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `media_id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `url` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='周一到周天的 banner 图';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `banners`
+--
+
+/*!40000 ALTER TABLE `banners` DISABLE KEYS */;
+INSERT INTO `banners` VALUES (1,'xiWEbz3LGTAp4Uf9H93AyhUTGZOfhYpqNJRKNeqbK8ucs2xNcu3rmk6qqahfMxmS','周日','https://mmbiz.qpic.cn/mmbiz_png/7XkntTQOU7VYNhydhLuJobFRicPa4F6o1mv7DNLY2Zc3g6zj8CYMVbAQcmslicSNBGC5ickPG8WTjicfPEadWJ2K8w/0?wx_fmt=png&from=appmsg'),(2,'xiWEbz3LGTAp4Uf9H93Ayj9eD81XkaRYC8AiYfo0jPjuTzCyCDEJ1vLNEA0SsevA','周六','https://mmbiz.qpic.cn/mmbiz_png/7XkntTQOU7VYNhydhLuJobFRicPa4F6o1gzRIJd6fTxEQYfkz3Wzj3OUWJJTuAfbs9RfLYl8NhbT78hZF6RENgw/0?wx_fmt=png&from=appmsg'),(3,'xiWEbz3LGTAp4Uf9H93Ayj-TxevuqN_NZwASPJcXqx5OQyigfDAhSQ85rLHhnLi1','周五','https://mmbiz.qpic.cn/mmbiz_png/7XkntTQOU7VYNhydhLuJobFRicPa4F6o1wUeSngd8w1H9UegFGLRXLiaPVgwLbJxkCeeOcrdlDQAWmclUP8lQs0g/0?wx_fmt=png&from=appmsg'),(4,'xiWEbz3LGTAp4Uf9H93Ayl3RqCt6NHSfv-PTgBs2e9BGLfs0R3QrVyjY9sQoWpLW','周四','https://mmbiz.qpic.cn/mmbiz_png/7XkntTQOU7VYNhydhLuJobFRicPa4F6o1tv49aCe7odsb1tEPAJeib0VoFr9CYlibEWfsAJk4yL0xbl1RWRK3PnBw/0?wx_fmt=png&from=appmsg'),(5,'xiWEbz3LGTAp4Uf9H93AyhrzAKbRz4fKJ3UhxLVoYQb6VrEL2UCG7bCMq-FguTAx','周三','https://mmbiz.qpic.cn/mmbiz_png/7XkntTQOU7VYNhydhLuJobFRicPa4F6o1PkCp8eqeQxrqS4Pa9vo0qFrDlmgVBXUP6RDEwCnMicWK8vdZ79y5Y5g/0?wx_fmt=png&from=appmsg'),(6,'xiWEbz3LGTAp4Uf9H93Aypm0VDWZATsRHjt4HCelifLvt0mRH7s4eq1wFpubrTKv','周二','https://mmbiz.qpic.cn/mmbiz_png/7XkntTQOU7VYNhydhLuJobFRicPa4F6o1CfzaZiaPvJwt31OPwwiaJM9fBKe69ULPP0Ceb0XuxoryKJIT95Tkg9Dw/0?wx_fmt=png&from=appmsg'),(7,'xiWEbz3LGTAp4Uf9H93Aygti2up-VIMN1gzab2j1yYSeR0Is16yaNfV0BJAX-K9i','周一','https://mmbiz.qpic.cn/mmbiz_png/7XkntTQOU7VYNhydhLuJobFRicPa4F6o1CbMOmzSFa7YyTRb4FjpTJSCX7o4FSXaKrEcgfumyXTQLjSicphRv64Q/0?wx_fmt=png&from=appmsg');
+/*!40000 ALTER TABLE `banners` ENABLE KEYS */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-01-16 14:35:43
+-- ************************************************************
+--
+-- close fk
+--
+-- skip
+
+
+-- MySQL dump 10.13  Distrib 5.7.35, for Linux (x86_64)
+--
+-- Host: 30.47.14.20    Database: jjyn
+-- ------------------------------------------------------
+-- Server version	5.7.18-cynos-2.1.13-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `drafts`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `drafts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `media_id` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='公众号草稿';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `drafts`
+--
+
+/*!40000 ALTER TABLE `drafts` DISABLE KEYS */;
+INSERT INTO `drafts` VALUES (1,'',''),(2,'',''),(3,'',''),(4,'济南大集，周三提醒！','xiWEbz3LGTAp4Uf9H93AyqcclrtheJK6ue0VuKWJMus0TYwMhF1Qnywnc1MGCgfw'),(5,'济南大集，周三提醒！','xiWEbz3LGTAp4Uf9H93AyqcclrtheJK6ue0VuKWJMus0TYwMhF1Qnywnc1MGCgfw'),(6,'济南大集，周三提醒！','xiWEbz3LGTAp4Uf9H93AyqcclrtheJK6ue0VuKWJMus0TYwMhF1Qnywnc1MGCgfw'),(7,'济南大集，周三提醒！','xiWEbz3LGTAp4Uf9H93AyiknIynAJ0DT7vMsI4TlGz-ILYKthwMTB31nwgPscnhq'),(8,'济南大集，周三提醒！','xiWEbz3LGTAp4Uf9H93AyspBZ0JuLbcP5QC24GL6WbHC_QsXXEL0jLn-H37LcRcY'),(9,'济南大集，周三提醒！','xiWEbz3LGTAp4Uf9H93AyrOnhDfwUI2FZJHcoWChHRXtJb1yaH81J5XhcWxpk6qX'),(10,'济南大集，周四提醒！','xiWEbz3LGTAp4Uf9H93AygYZqwPtax0or_N0w9atFg28xe7nnPxWsj4MxXvPeu5N'),(11,'济南大集，周四提醒！','xiWEbz3LGTAp4Uf9H93AytBkpmQm6YuZQKLoRVaGuJSrOlTAwLBtY6rKcAm_D-D3');
+/*!40000 ALTER TABLE `drafts` ENABLE KEYS */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-01-16 14:35:43
+-- ************************************************************
+--
+-- close fk
+--
+-- skip
+
+
+-- MySQL dump 10.13  Distrib 5.7.35, for Linux (x86_64)
+--
+-- Host: 30.47.14.20    Database: jjyn
+-- ------------------------------------------------------
+-- Server version	5.7.18-cynos-2.1.13-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
 -- Table structure for table `markets`
 --
 
@@ -59,4 +172,4 @@ INSERT INTO `markets` VALUES (1,'亿来森大集','历下区','\"一\", \"四\",
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-31 18:05:55
+-- Dump completed on 2025-01-16 14:35:43
