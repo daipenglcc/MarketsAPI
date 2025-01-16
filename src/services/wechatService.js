@@ -32,8 +32,7 @@ async function getWeChatMediaList() {
 
 		return response.data
 	} catch (error) {
-		console.error('Error fetching OpenID:', error)
-		throw new Error('Failed to fetch OpenID')
+		console.error('Error:', error)
 	}
 }
 
