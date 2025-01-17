@@ -71,7 +71,6 @@ async function fetchDraftList() {
 }
 
 async function fetchDraft(data) {
-	console.log('XXXXXX', data)
 	try {
 		const token = await getWeChatToken()
 		const response = await axios.post(
