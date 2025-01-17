@@ -71,6 +71,11 @@ docker run -d --name markets-api -p 7676:7676 -e NODE_ENV=production -e PORT=767
 
 # 进入正在运行的容器
 docker exec -it markets-api /bin/sh
+
+# 发布 Docker 镜像
+docker login
+docker tag markets-api youhuabujianye/markets-api
+docker push youhuabujianye/markets-api
 ```
 
 ## pm2
