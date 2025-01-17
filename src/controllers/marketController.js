@@ -1,5 +1,5 @@
 const dayjs = require('dayjs')
-const Market = require('../models/market')
+const { Market } = require('../models/market')
 
 // 批量创建大集
 async function createMerchants(ctx) {
@@ -12,6 +12,11 @@ async function createMerchants(ctx) {
 		merchants.forEach((merchant) => {
 			console.log('创建大集:', merchant.name)
 		})
+
+		ctx.body = {
+			code: 200,
+			message: `成功创建了 ${merchants.length} 个大集`
+		}
 	} catch (error) {
 		console.error('批量创建大集失败:', error)
 	}
