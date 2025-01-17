@@ -1,5 +1,5 @@
 const dayjs = require('dayjs')
-const { Market } = require('../models/market')
+const { Market, getMarketByDate } = require('../models/market')
 
 // 批量创建大集
 async function createMerchants(ctx) {
@@ -51,7 +51,7 @@ async function getMerchantByDate(ctx) {
 	try {
 		// 获取当前日期或传入的日期
 		let nowDate = ctx.request.query.nowDate || dayjs().format('YYYY-MM-DD')
-		const obj = await Market.getMarketByDate(nowDate)
+		const obj = await getMarketByDate(nowDate)
 
 		ctx.body = {
 			code: 200,

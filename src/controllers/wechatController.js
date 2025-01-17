@@ -1,5 +1,5 @@
 const wechatService = require('../services/wechatService')
-const Market = require('../models/market')
+const { getMarketByDate } = require('../models/market')
 const Banner = require('../models/banner')
 const Draft = require('../models/draft')
 const utils = require('../utils/utils')
@@ -48,7 +48,7 @@ async function addDraft(ctx) {
 	// 格式组装
 	const formatted = `农历${lunar.year}【${zodiac}】年${formattedLunarDate}`
 
-	const obj = await Market.getMarketByDate()
+	const obj = await getMarketByDate()
 
 	let html = await ctx.render('index', {
 		currentDate: currentDate,
