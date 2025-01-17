@@ -13,7 +13,7 @@ async function getWeChatToken() {
 
 		return response.data.access_token
 	} catch (error) {
-		console.error('Error Token:', error)
+		console.log('Error Token:', error)
 		throw new Error('Token获取失败')
 	}
 }
