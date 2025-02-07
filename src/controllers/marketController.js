@@ -33,6 +33,7 @@ async function getMerchants(ctx) {
 		// 		count: merchants.length
 		// 	}
 		// }
+		console.log('数据无价🐶')
 
 		ctx.body = {
 			code: 200,

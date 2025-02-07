@@ -63,6 +63,12 @@ wxcloud deploy
 # 构建 Docker 镜像
 docker build -t markets-api .
 
+# 导出镜像
+docker save markets-api > markets-api.tar
+
+# 解压镜像
+docker load < markets-api.tar
+
 # 运行容器（开发环境）
 docker run -d --name markets-api -p 7676:7676 -e NODE_ENV=development -e PORT=7676 markets-api
 
@@ -76,6 +82,12 @@ docker exec -it markets-api /bin/sh
 docker login
 docker tag markets-api youhuabujianye/markets-api
 docker push youhuabujianye/markets-api
+
+# 查看日志
+docker logs markets-api
+
+# 查看实时日志
+docker logs -f markets-api
 ```
 
 ## pm2
@@ -98,4 +110,10 @@ pm2 stop ecosystem.config.js
 
 # 删除服务
 pm2 delete ecosystem.config.js
+```
+
+## crontab
+
+```bash
+$ 0 9 * * * curl -X POST http://localhost:7676/api/wechat/submitArticle
 ```
