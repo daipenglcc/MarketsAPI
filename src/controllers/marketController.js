@@ -1,5 +1,7 @@
 const dayjs = require('dayjs')
 const { Market, getMarketByDate } = require('../models/market')
+const { Areas, addAreas } = require('../models/area')
+// const Areas = require('../models/area')
 
 // 批量创建大集
 async function createMerchants(ctx) {
@@ -34,8 +36,25 @@ async function getMerchantByDate(ctx) {
 	}
 }
 
+// 新增区域
+async function addArea(ctx) {
+	let ret = await addAreas({
+		area_id: ctx.request.body.area_id,
+		title: ctx.request.body.title
+	})
+	ctx.body = { data: ret }
+}
+
+// 查询全部区域
+async function getArea(ctx) {
+	const areas = await Areas.findAll()
+	ctx.body = { data: { areas: areas, count: areas.length } }
+}
+
 module.exports = {
 	createMerchants,
 	getMerchants,
-	getMerchantByDate
+	getMerchantByDate,
+	addArea,
+	getArea
 }

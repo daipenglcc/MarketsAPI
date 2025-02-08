@@ -16,27 +16,20 @@ const sequelize = new Sequelize(
 		host: process.env.DB_HOST,
 		dialect: 'mysql', // 使用 MySQL 数据库
 		port: process.env.DB_PORT,
-		logging: true // 是否开启 SQL 查询日志
+		logging: false // 是否开启 SQL 查询日志
 	}
 )
 
 // 测试数据库连接
-async function testConnection() {
-	try {
-		await sequelize.authenticate()
-		console.log('数据库连接成功！')
-	} catch (error) {
-		console.error('无法连接到数据库：', error)
-	}
-}
+// async function testConnection() {
+// 	try {
+// 		await sequelize.authenticate()
+// 		console.log('数据库连接成功！')
+// 	} catch (error) {
+// 		console.error('无法连接到数据库：', error)
+// 	}
+// }
 
-testConnection()
-
-// // 创建 Sequelize 实例，并连接到 MySQL 数据库
-// const sequelize = new Sequelize('jjyn', 'root', 'daipeng2012@lcc##', {
-// 	host: 'localhost',
-// 	dialect: 'mysql',
-// 	logging: false // 可以关闭 SQL 查询日志
-// })
+// testConnection()
 
 module.exports = sequelize

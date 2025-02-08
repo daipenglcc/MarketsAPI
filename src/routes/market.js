@@ -9,5 +9,7 @@ const router = new Router({
 router.post('/createMerchants', marketController.createMerchants)
 router.get('/getMerchants', marketController.getMerchants)
 router.get('/getMerchantByDate', marketController.getMerchantByDate)
+router.post('/addArea', marketController.addArea)
+router.get('/getArea', marketController.getArea)
 
 module.exports = router
