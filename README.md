@@ -6,17 +6,16 @@
 
 ## 微信信息
 
-### 1. 应用信息
+### 应用信息
 - **AppSecret:** 37de2579db05998dcc58a42b88f33b4b  
 - **AppID:** wx5cc63b63f4486af0  
 
-### 2. CLI 配置信息
-- **名称:** daipeng  
+### CLI 配置信息
+- **名称:** daipeng
 - **密钥:** AAQ9G7sEAAABAAAAAABrC2mz0ZAIPyrOup5iZyAAAAAraAdzKm8i8JwFJ68cDOJBtIHsmv3F8e00LCv7f+tYvv9NY49fQrpCITG1+CDGc6ngZEP+P1WdeTFvkyVGj7JbaGK0qB0xSg3LESm91mw8zBZHpHjpHQR9WaoO1jAwIJxFsnORaFrMYeqalkuc2lVxBQgNjgTk7K/W
 
-### 3. 微信公众号封面图尺寸
-
-900 × 383
+### 微信公众号封面图尺寸
+- **尺寸:** 900 × 383
 
 ## 微信云托管
 
@@ -57,7 +56,7 @@ wxcloud deploy
 - **GET /fetchMediaList**: 从微信检索媒体项目列表。
 - **POST /addDraft**: 向微信添加草稿。
 
-## Docker
+## Docker 使用
 
 ```bash
 # 构建 Docker 镜像
@@ -90,7 +89,8 @@ docker logs markets-api
 docker logs -f markets-api
 ```
 
-## pm2
+## PM2 使用
+
 ```bash
 # 启动开发环境
 pm2 start ecosystem.config.js
@@ -112,7 +112,7 @@ pm2 stop ecosystem.config.js
 pm2 delete ecosystem.config.js
 ```
 
-## crontab
+## Crontab 定时任务
 
 ```bash
 $ 0 9 * * * curl -X POST http://localhost:7676/api/wechat/submitArticle
