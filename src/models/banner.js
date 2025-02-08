@@ -20,24 +20,9 @@ async function getBannersByName(date) {
 				name: date
 			}
 		})
-
-		// // 获取所有区域的去重值
-		// const regions = [...new Set(data.map((item) => item.region))]
-
-		// // 定义区域分组逻辑
-		// const result = []
-
-		// regions.forEach((regionName) => {
-		// 	const groupedRegion = {
-		// 		name: regionName,
-		// 		children: data.filter((item) => item.region === regionName)
-		// 	}
-		// 	result.push(groupedRegion)
-		// })
-
 		return { data }
 	} catch (error) {
-		console.log('error', error)
+		console.log('Error:', error)
 	}
 }
 

@@ -110,7 +110,7 @@ async function getMarketByDate(date) {
 
 		return { merchants, result, lunar }
 	} catch (error) {
-		console.log('error', error)
+		console.log('Error:', error)
 	}
 }
 
