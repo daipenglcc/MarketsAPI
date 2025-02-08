@@ -51,8 +51,7 @@ const Market = sequelize.define(
 	{
 		tableName: 'markets', // 表名
 		timestamps: true, // 自动创建 createdAt 和 updatedAt 字段
-		underscored: true, // 使用下划线命名，如 id 会变为 market_id
-		comment: '大集表，存储各个大集的信息' // 表级注释
+		underscored: true // 使用下划线命名，如 id 会变为 market_id
 	}
 )
 
