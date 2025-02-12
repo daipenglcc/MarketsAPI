@@ -11,5 +11,7 @@ router.get('/getMerchants', marketController.getMerchants)
 router.get('/getMerchantByDate', marketController.getMerchantByDate)
 router.post('/addArea', marketController.addArea)
 router.get('/getArea', marketController.getArea)
+router.get('/getAreaInfo', marketController.getAreaInfo)
+router.post('/updataArea', marketController.updataArea)
 
 module.exports = router

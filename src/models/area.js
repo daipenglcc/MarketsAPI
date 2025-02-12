@@ -4,7 +4,7 @@
  * @Author: daipeng
  * @Date: 2025-02-09 00:50:18
  * @LastEditors: daipeng
- * @LastEditTime: 2025-02-09 01:08:05
+ * @LastEditTime: 2025-02-10 15:12:16
  */
 const { DataTypes } = require('sequelize')
 const sequelize = require('../../config/dbConfig') // 引入数据库连接
@@ -18,11 +18,6 @@ const Areas = sequelize.define(
 			primaryKey: true,
 			autoIncrement: true, // 自增ID
 			comment: '唯一标识符ID' // 添加注释
-		},
-		area_id: {
-			type: DataTypes.INET,
-			allowNull: false,
-			comment: '地区ID' // 添加注释
 		},
 		title: {
 			type: DataTypes.STRING,
@@ -40,7 +35,12 @@ const Areas = sequelize.define(
 // 插入一条区域数据
 async function addAreas(data) {
 	try {
-		console.log('data', data)
+		// 检查是否已存在相同的 title
+		const existingArea = await Areas.findOne({ where: { title: data.title } })
+		if (existingArea) {
+			throw new Error('区域标题已存在') // 抛出错误
+		}
+
 		const result = await Areas.create(data)
 		return result
 	} catch (error) {

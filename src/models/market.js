@@ -22,6 +22,11 @@ const Market = sequelize.define(
 			allowNull: false,
 			comment: '大集名称，不能为空'
 		},
+		area_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			comment: '大集所在的区域ID'
+		},
 		region: {
 			type: DataTypes.STRING,
 			allowNull: false,
