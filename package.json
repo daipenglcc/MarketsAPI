@@ -14,10 +14,12 @@
 	},
 	"dependencies": {
 		"axios": "^1.6.2",
+		"bcrypt": "^5.1.1",
 		"chinese-lunar": "^0.1.4",
 		"dayjs": "^1.11.13",
 		"dotenv": "^16.4.7",
 		"ejs": "^3.1.10",
+		"jsonwebtoken": "^9.0.2",
 		"koa": "^2.14.2",
 		"koa-bodyparser": "^4.4.1",
 		"koa-router": "^12.0.1",

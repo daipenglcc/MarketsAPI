@@ -7,7 +7,9 @@ const views = require('koa-views')
 const path = require('path')
 const wechatRouter = require('./routes/wechat')
 const marketRouter = require('./routes/market')
+const datebaseRouter = require('./routes/datebase')
 const responseFormatter = require('./middleware/responseFormatter')
+const userRoutes = require('./routes/user')
 
 const app = new Koa()
 const router = new Router()
@@ -38,6 +40,8 @@ router.get('/', (ctx) => {
 app.use(router.routes()).use(router.allowedMethods())
 app.use(wechatRouter.routes()).use(wechatRouter.allowedMethods())
 app.use(marketRouter.routes()).use(marketRouter.allowedMethods())
+app.use(datebaseRouter.routes()).use(datebaseRouter.allowedMethods())
+app.use(userRoutes.routes()).use(userRoutes.allowedMethods())
 
 const PORT = process.env.PORT || 7676
 app.listen(PORT, () => {
