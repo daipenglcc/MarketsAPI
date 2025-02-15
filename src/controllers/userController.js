@@ -9,7 +9,7 @@ async function register(ctx) {
 
 // 用户登录
 async function login(ctx) {
-	const { username, password } = ctx.request.body
+	const { username, password } = ctx.request.query
 	const { user, token } = await loginUser(username, password)
 	ctx.body = {
 		message: '登录成功',

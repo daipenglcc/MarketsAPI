@@ -7,7 +7,7 @@ const router = new Router({
 })
 
 router.post('/register', register) // 用户注册
-router.post('/login', login) // 用户登录
+router.get('/login', login) // 用户登录
 router.get('/getUserInfo', authenticate, getUserInfo) // 路由保护
 
 module.exports = router
