@@ -115,5 +115,9 @@ pm2 delete ecosystem.config.js
 ## Crontab 定时任务
 
 ```bash
-$ 0 9 * * * curl -X POST http://localhost:7676/api/wechat/submitArticle
+$ crontab -l # 查看当前用户的crontab文件
+$ crontab -e # 编辑当前用户的crontab文件
+$ 0 9 * * * curl -X POST http://localhost:7676/api/wechat/submitArticle # 每天九点触发
+$ curl http://localhost:7676/api/wechat/fetchToken # 获取 Token
+$ curl -X POST http://localhost:7676/api/wechat/submitArticle # 手动发布
 ```
