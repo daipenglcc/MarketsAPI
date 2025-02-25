@@ -20,8 +20,8 @@ async function createMerchants(ctx) {
 	}
 }
 
-// 创建一个大集或修改大集
-async function createOneMerchant(ctx) {
+// 更新或插入大集
+async function upsertMerchant(ctx) {
 	const merchantData = ctx.request.body
 	if (merchantData.id) {
 		console.log('merchantData', merchantData)
@@ -131,7 +131,7 @@ async function getArea(ctx) {
 async function getAreaInfo(ctx) {
 	const id = ctx.request.query.id
 	if (!id) {
-		ctx.throw('区域ID必填')
+		throw new Error('区域ID必填')
 	}
 	const area = await Areas.findByPk(id)
 	ctx.body = { data: area }
@@ -142,17 +142,16 @@ async function updataArea(ctx) {
 	const updatedData = ctx.request.body
 	const id = updatedData.id
 	if (!id) {
-		ctx.throw('区域ID必填')
+		throw new Error('区域ID必填')
 	}
 
 	const area = await Areas.findByPk(id)
 	if (!area) {
-		ctx.throw('未找到该区域')
+		throw new Error('未找到该区域')
 	}
 
-	// 添加判断逻辑，确保更新的数据包含必要字段
 	if (!updatedData.title) {
-		ctx.throw('区域标题必填')
+		throw new Error('区域标题必填')
 	}
 
 	await area.update(updatedData)
@@ -160,8 +159,26 @@ async function updataArea(ctx) {
 	ctx.body = { data: area }
 }
 
+// 删除大集
+async function deleteMerchant(ctx) {
+	const id = ctx.request.body.id // 从请求体中获取大集ID
+	if (!id) {
+		throw new Error('大集ID必填') // 抛出错误
+	}
+
+	const existing = await Market.findByPk(id) // 根据ID查找大集
+	if (!existing) {
+		throw new Error('未找到该大集信息') // 抛出错误
+	}
+
+	await Market.destroy({ where: { id } }) // 删除大集
+	ctx.body = {
+		data: `成功删除了大集: ${existing.name}`
+	}
+}
+
 module.exports = {
-	createOneMerchant,
+	upsertMerchant,
 	getMerchantDetail,
 	createMerchants,
 	getMerchants,
@@ -169,5 +186,6 @@ module.exports = {
 	addArea,
 	getArea,
 	getAreaInfo,
-	updataArea
+	updataArea,
+	deleteMerchant
 }
