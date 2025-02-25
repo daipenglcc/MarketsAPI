@@ -20,6 +20,52 @@ async function createMerchants(ctx) {
 	}
 }
 
+// 创建一个大集或修改大集
+async function createOneMerchant(ctx) {
+	const merchantData = ctx.request.body
+	if (merchantData.id) {
+		console.log('merchantData', merchantData)
+		// 如果存在 id，则更新现有大集
+		const existing = await Market.findByPk(merchantData.id)
+		if (!existing) {
+			throw new Error('未找到该大集信息') // 抛出错误
+		}
+		// 更新大集信息，添加 where 条件
+		await Market.update(merchantData, { where: { id: merchantData.id } }) // 更新大集信息
+		ctx.body = {
+			data: `成功更新了大集为: ${existing.name}`
+		}
+	} else {
+		// 检查是否已存在相同的 name
+		const existing = await Market.findOne({ where: { name: merchantData.name } })
+		if (existing) {
+			throw new Error('大集信息已存在') // 抛出错误
+		}
+		const merchant = await Market.create(merchantData)
+
+		ctx.body = {
+			data: `成功创建了大集: ${merchant.name}`
+		}
+	}
+}
+
+// 查询大集详情
+async function getMerchantDetail(ctx) {
+	const id = ctx.request.query.id // 从请求中获取大集ID
+	if (!id) {
+		throw new Error('大集ID必填')
+	}
+
+	const merchantInfo = await Market.findByPk(id) // 根据ID查找大集
+	if (!merchantInfo) {
+		throw new Error('未找到该大集信息')
+	}
+
+	ctx.body = {
+		data: merchantInfo // 返回大集信息
+	}
+}
+
 // 查询所有大集信息
 async function getMerchants(ctx) {
 	const pageIndex = parseInt(ctx.request.query.pageIndex) || 1 // 默认值为1
@@ -115,6 +161,8 @@ async function updataArea(ctx) {
 }
 
 module.exports = {
+	createOneMerchant,
+	getMerchantDetail,
 	createMerchants,
 	getMerchants,
 	getMerchantByDate,

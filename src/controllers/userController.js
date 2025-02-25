@@ -2,8 +2,8 @@ const { registerUser, loginUser } = require('../models/user')
 
 // 用户注册
 async function register(ctx) {
-	const { username, password } = ctx.request.body
-	await registerUser(username, password)
+	const { username, password, permission } = ctx.request.body
+	await registerUser(username, password, permission)
 	ctx.body = { message: '注册成功' }
 }
 

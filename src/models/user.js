@@ -24,6 +24,11 @@ const User = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 			comment: '用户密码' // 添加注释
+		},
+		permission: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			comment: '权限'
 		}
 	},
 	{
@@ -34,7 +39,7 @@ const User = sequelize.define(
 )
 
 // 注册用户
-async function registerUser(username, password) {
+async function registerUser(username, password, permission) {
 	// 检查是否已存在相同的 title
 	const existing = await User.findOne({ where: { username: username } })
 	if (existing) {
@@ -42,7 +47,7 @@ async function registerUser(username, password) {
 	}
 
 	const hashedPassword = await bcrypt.hash(password, 10) // 哈希密码
-	const user = await User.create({ username, password: hashedPassword })
+	const user = await User.create({ username, password: hashedPassword, permission })
 	return user
 }
 

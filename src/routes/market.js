@@ -6,6 +6,8 @@ const router = new Router({
 })
 
 // 定义路由
+router.post('/createOneMerchant', marketController.createOneMerchant)
+router.get('/getMerchantDetail', marketController.getMerchantDetail)
 router.post('/createMerchants', marketController.createMerchants)
 router.get('/getMerchants', marketController.getMerchants)
 router.get('/getMerchantByDate', marketController.getMerchantByDate)
