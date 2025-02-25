@@ -11,7 +11,7 @@
  Target Server Version : 50718 (5.7.18-cynos-2.1.13-log)
  File Encoding         : 65001
 
- Date: 15/02/2025 17:18:31
+ Date: 25/02/2025 17:00:26
 */
 
 SET NAMES utf8mb4;
@@ -27,13 +27,13 @@ CREATE TABLE `areas` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of areas
 -- ----------------------------
 BEGIN;
-INSERT INTO `areas` (`id`, `title`, `created_at`, `updated_at`) VALUES (1, '历下区', '2025-02-08 17:17:51', '2025-02-12 10:18:09');
+INSERT INTO `areas` (`id`, `title`, `created_at`, `updated_at`) VALUES (1, '历下区', '2025-02-08 17:17:51', '2025-02-15 10:35:41');
 INSERT INTO `areas` (`id`, `title`, `created_at`, `updated_at`) VALUES (2, '天桥区', '2025-02-08 17:18:34', '2025-02-08 17:18:34');
 INSERT INTO `areas` (`id`, `title`, `created_at`, `updated_at`) VALUES (3, '市中区', '2025-02-08 17:24:00', '2025-02-08 17:24:00');
 INSERT INTO `areas` (`id`, `title`, `created_at`, `updated_at`) VALUES (9, '历城区', '2025-02-10 07:32:59', '2025-02-10 07:32:59');
@@ -82,7 +82,7 @@ CREATE TABLE `drafts` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='公众号草稿';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='公众号草稿';
 
 -- ----------------------------
 -- Records of drafts
@@ -91,6 +91,9 @@ BEGIN;
 INSERT INTO `drafts` (`id`, `title`, `media_id`, `created_at`, `updated_at`) VALUES (19, '济南大集，周日提醒！', 'xiWEbz3LGTAp4Uf9H93AyrajIzLmbPnOnXgqQptjdI5YBwcnRFILeMA8F22lFsan', '2025-02-08 17:25:46', '2025-02-08 17:25:46');
 INSERT INTO `drafts` (`id`, `title`, `media_id`, `created_at`, `updated_at`) VALUES (20, '济南大集，周一提醒！', 'xiWEbz3LGTAp4Uf9H93AyjIF7jR1CdQG2thyWKb_XWzhIthCBR6fUOUPsUGLeagw', NULL, NULL);
 INSERT INTO `drafts` (`id`, `title`, `media_id`, `created_at`, `updated_at`) VALUES (21, '济南大集，周五提醒！', 'xiWEbz3LGTAp4Uf9H93AyjZFx916Y7XIosMaxrgah5A3ODhOFQXmKoMPdqegQuxP', NULL, NULL);
+INSERT INTO `drafts` (`id`, `title`, `media_id`, `created_at`, `updated_at`) VALUES (22, '济南大集，周一提醒！', 'xiWEbz3LGTAp4Uf9H93Aymhg6iRjd5i2jjsZaajLB1XjWaHlIaB6aNXNvQsUO6i4', NULL, NULL);
+INSERT INTO `drafts` (`id`, `title`, `media_id`, `created_at`, `updated_at`) VALUES (23, '济南大集，周四提醒！', 'xiWEbz3LGTAp4Uf9H93Aykv0HImeNL2xn-DrP4GpJlbfOiBPwx7XPBd4PKBYQBn7', NULL, NULL);
+INSERT INTO `drafts` (`id`, `title`, `media_id`, `created_at`, `updated_at`) VALUES (24, '济南大集，周五提醒！', 'xiWEbz3LGTAp4Uf9H93AyrQmRQ3n36D1YPY2XlZhguv6LPjUftX73Byp5FH91f-V', NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -109,7 +112,7 @@ CREATE TABLE `markets` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COMMENT='大集表，存储各个大集的信息';
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COMMENT='大集表，存储各个大集的信息';
 
 -- ----------------------------
 -- Records of markets
@@ -192,25 +195,20 @@ COMMIT;
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission` int(11) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (1, '测试122', '$2b$10$cnQb3rf5B4KRhcWH0/PULu0faEZz/Vkl6vv04g5GzDoNHSxgOm2RW', '2025-02-13 11:58:01', '2025-02-13 11:58:01');
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (2, '测试2', '$2b$10$79cmKU8v/5x1/9QHFCS8iOaEzeiiSW0c3Ch5xOggO2wZWv4K.3aJG', '2025-02-13 11:58:12', '2025-02-13 11:58:12');
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (3, '测试3', '$2b$10$j0vp9hoglojh5JZXO4rSnunlQSLFoeST9Ep3P6VdbZGAlRyOZjg7W', '2025-02-13 11:59:20', '2025-02-13 11:59:20');
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (4, '测试4', '$2b$10$jL9AQHC1M4LtXeXbOI9ig.EXupOcFU0PVcRetC2wXUctMmdKRTMC6', '2025-02-13 11:59:33', '2025-02-13 11:59:33');
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (5, '测试2', '$2b$10$77BnBI/PaeOt1RIplqst1.xSoAvJe4ZUoXhywXAuOljwfslMVpfWK', '2025-02-13 12:02:04', '2025-02-13 12:02:04');
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (6, '测试23', '$2b$10$U/yJ7EsPZbGkvK.6Ownwb.7yXT.AyQ5A8dlTrmcneGOuit49fmD9q', '2025-02-13 12:02:36', '2025-02-13 12:02:36');
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (7, '测试213', '$2b$10$gn3WrxpxBljZZSe.0dwox.Q3dE173tNn5P/wur2QvIrb/1zo7TJQi', '2025-02-13 12:05:04', '2025-02-13 12:05:04');
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (8, 'admin', '$2b$10$a6fUiLnTTFUz9NxMaJzsy.Ap8QwcjkpFuFAhy/yNjS85HaeHQL.h2', '2025-02-15 09:16:58', '2025-02-15 09:16:58');
+INSERT INTO `users` (`id`, `permission`, `username`, `password`, `created_at`, `updated_at`) VALUES (8, 10, 'admin', '$2b$10$a6fUiLnTTFUz9NxMaJzsy.Ap8QwcjkpFuFAhy/yNjS85HaeHQL.h2', '2025-02-15 09:16:58', '2025-02-15 09:16:58');
+INSERT INTO `users` (`id`, `permission`, `username`, `password`, `created_at`, `updated_at`) VALUES (9, 1, 'test', '$2b$10$MngkLJdcB7bneIvoJFnVC.xD79j5SkHjzkWobgOItr5k7ktPbAKIu', '2025-02-25 07:48:21', '2025-02-25 07:48:21');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

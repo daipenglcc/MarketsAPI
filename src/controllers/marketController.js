@@ -28,18 +28,18 @@ async function upsertMerchant(ctx) {
 		// 如果存在 id，则更新现有大集
 		const existing = await Market.findByPk(merchantData.id)
 		if (!existing) {
-			throw new Error('未找到该大集信息') // 抛出错误
+			throw new Error('未找到该大集信息')
 		}
 		// 更新大集信息，添加 where 条件
-		await Market.update(merchantData, { where: { id: merchantData.id } }) // 更新大集信息
+		await Market.update(merchantData, { where: { id: merchantData.id } })
 		ctx.body = {
-			data: `成功更新了大集为: ${existing.name}`
+			data: `成功更新了大集为: ${merchantData.name}`
 		}
 	} else {
 		// 检查是否已存在相同的 name
 		const existing = await Market.findOne({ where: { name: merchantData.name } })
 		if (existing) {
-			throw new Error('大集信息已存在') // 抛出错误
+			throw new Error('大集信息已存在')
 		}
 		const merchant = await Market.create(merchantData)
 
@@ -88,7 +88,8 @@ async function getMerchants(ctx) {
 	const merchants = await Market.findAll({
 		where: whereClause,
 		limit: pageSize,
-		offset: (pageIndex - 1) * pageSize
+		offset: (pageIndex - 1) * pageSize,
+		order: [['created_at', 'DESC']]
 	})
 	const totalCount = await Market.count({ where: whereClause }) // 获取总记录数
 	ctx.body = { data: { merchants: merchants, count: totalCount, pageIndex, pageSize } }

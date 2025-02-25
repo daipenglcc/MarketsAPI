@@ -33,7 +33,7 @@ const Market = sequelize.define(
 			comment: '大集所在的区域'
 		},
 		dates: {
-			type: DataTypes.JSON, // 使用 JSON 类型存储日期数组
+			type: DataTypes.STRING, // 使用 JSON 类型存储日期数组
 			allowNull: false,
 			comment: '大集开放的日期'
 		},
@@ -43,8 +43,8 @@ const Market = sequelize.define(
 			comment: '大集地址'
 		},
 		bus_routes: {
-			type: DataTypes.JSON, // 使用 JSON 类型存储公交路线数组
-			allowNull: false,
+			type: DataTypes.STRING, // 使用 JSON 类型存储公交路线数组
+			allowNull: true,
 			comment: '公交路线'
 		},
 		location: {
