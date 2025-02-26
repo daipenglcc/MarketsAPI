@@ -4,7 +4,7 @@
  * @Author: daipeng
  * @Date: 2025-02-09 00:50:18
  * @LastEditors: daipeng
- * @LastEditTime: 2025-02-10 15:12:16
+ * @LastEditTime: 2025-02-26 16:17:32
  */
 const { DataTypes } = require('sequelize')
 const sequelize = require('../../config/dbConfig') // 引入数据库连接
@@ -18,6 +18,11 @@ const Areas = sequelize.define(
 			primaryKey: true,
 			autoIncrement: true, // 自增ID
 			comment: '唯一标识符ID' // 添加注释
+		},
+		locked: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			comment: '数据锁定'
 		},
 		title: {
 			type: DataTypes.STRING,

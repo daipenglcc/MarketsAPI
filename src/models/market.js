@@ -17,6 +17,11 @@ const Market = sequelize.define(
 			autoIncrement: true, // 自增ID
 			comment: '唯一标识符ID' // 添加注释
 		},
+		locked: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			comment: '数据锁定'
+		},
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false,

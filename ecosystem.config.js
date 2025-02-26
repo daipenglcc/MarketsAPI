@@ -4,13 +4,8 @@ module.exports = {
 			name: 'MarketsAPI',
 			script: 'npm',
 			args: 'run start',
-			watch: true,
 			env: {
 				// 默认环境配置
-				NODE_ENV: 'development',
-				PORT: 7676
-			},
-			env_development: {
 				NODE_ENV: 'development',
 				PORT: 7676,
 				watch: true
