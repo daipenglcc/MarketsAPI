@@ -3,3 +3,7 @@ node_modules/
 *.log
 logs/
 .eslintcache
+
+# env files
+.env.development
+.env.production
