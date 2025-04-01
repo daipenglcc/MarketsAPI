@@ -13,7 +13,8 @@ async function authenticate(ctx, next) {
 		ctx.state.user = decoded // 将用户信息存储在 ctx.state 中
 		await next() // 继续处理请求
 	} catch (error) {
-		ctx.throw(401, '无效的 token')
+		console.log('error', error)
+		ctx.throw(401, error || '无效的 token')
 	}
 }
 

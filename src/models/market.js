@@ -20,6 +20,7 @@ const Market = sequelize.define(
 		locked: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			defaultValue: 0, // 添加默认值 0
 			comment: '数据锁定'
 		},
 		name: {

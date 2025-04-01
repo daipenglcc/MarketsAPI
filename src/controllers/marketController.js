@@ -89,7 +89,7 @@ async function getMerchants(ctx) {
 		where: whereClause,
 		limit: pageSize,
 		offset: (pageIndex - 1) * pageSize,
-		order: [['created_at', 'DESC']]
+		order: [['id', 'DESC']]
 	})
 	const totalCount = await Market.count({ where: whereClause }) // 获取总记录数
 	ctx.body = { data: { merchants: merchants, count: totalCount, pageIndex, pageSize } }
@@ -178,6 +178,31 @@ async function deleteMerchant(ctx) {
 	}
 }
 
+async function lockMerchant(ctx) {
+	const { id } = ctx.request.body
+	if (!id) {
+		throw new Error('大集ID必填')
+	}
+
+	const marketInfo = await Market.findByPk(id)
+	if (!marketInfo) {
+		throw new Error('未找到该大集')
+	}
+
+	// console.log('marketInfo', marketInfo.toJSON())
+
+	// 获取数据
+	const marketData = marketInfo.get()
+	const updatedData = {
+		locked: marketData.locked ? 0 : 1 // 反转 locked 状态
+	}
+
+	// 更新数据库
+	await marketInfo.update(updatedData)
+
+	ctx.body = { data: { ...marketData, ...updatedData } }
+}
+
 module.exports = {
 	upsertMerchant,
 	getMerchantDetail,
@@ -188,5 +213,6 @@ module.exports = {
 	getArea,
 	getAreaInfo,
 	updataArea,
-	deleteMerchant
+	deleteMerchant,
+	lockMerchant
 }
