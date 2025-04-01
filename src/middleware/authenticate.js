@@ -4,7 +4,7 @@ require('dotenv').config()
 async function authenticate(ctx, next) {
 	const authHeader = ctx.headers['authorization']
 	if (!authHeader) {
-		ctx.throw(401, '未提供 token')
+		ctx.throw(401, '缺失 token')
 	}
 
 	const token = authHeader.split(' ')[1] // 获取 token

@@ -22,7 +22,13 @@ async function login(ctx) {
 
 // 获取用户信息
 async function getUserInfo(ctx) {
-	ctx.body = { data: ctx.state.user }
+	console.log(ctx.state)
+	ctx.body = {
+		data: {
+			...ctx.state.user,
+			avatar: 'https://bucket.vues.cn/jjyn/cat.jpg'
+		}
+	}
 }
 
 module.exports = {
